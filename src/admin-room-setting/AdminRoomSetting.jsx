@@ -17,7 +17,7 @@ function AdminRoomSetting() {
   const [editDeptDesc, setEditDeptDesc] = useState('');
 
   const hospitalId = 1;
-  const API_BASE = 'http://13.209.99.158:8080/api/v1/admin/hospitals';
+  const API_BASE = 'https://13.209.99.158:8080/api/v1/admin/hospitals';
 
   useEffect(() => {
     const fetchDepartments = async () => {
