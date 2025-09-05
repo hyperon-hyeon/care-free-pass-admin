@@ -1,0 +1,33 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0; /* 오른쪽에서 슬라이드 */
+  width: 250px;
+  height: 100vh;
+  background: #fff;
+  border-left: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+  z-index: 100;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.dropdown-menu {
+  position: absolute; /* 이 속성은 유지 */
+  top: 100;
+  left: 0;
+  
+  /* X, Y축으로 위치를 이동 */
+  transform: translate(0, 150px); /* 50px만큼 아래로 이동 */
+  
+  /* ... 나머지 스타일 ... */
+  display: flex;
+  flex-direction: column;
+}
