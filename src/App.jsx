@@ -6,8 +6,7 @@ import AdminPage from './admin-setting/AdminPage.jsx';
 import AdminDateSetting from './admin-date-setting/AdminSetting.jsx';
 import AdminRoomSetting from './admin-room-setting/AdminRoomSetting.jsx';
 import AdminDashboard from './admin-waiting/AdminDashBoard.jsx';
-
-// import { signUp } from './api/auth.js'; 
+import './api/auth.js'; 
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));

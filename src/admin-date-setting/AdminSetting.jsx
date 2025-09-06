@@ -20,6 +20,7 @@ function AdminSetting() {
   const today = new Date();
 
   const statusMap = {
+    SCHEDULLED: '내원전',
     WAITING: '내원전',
     BOOKED: '예약됨',
     ARRIVED: '대기중',

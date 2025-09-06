@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://13.209.99.158:8080/api/v1/auth/hospital';
+const ADMIN_URL = import.meta.env.VITE_REACT_APP_ADMIN_URL; // Vite 환경에서 올바른 접근
+
+const BASE_URL = `${ADMIN_URL}/auth/hospital`;
 
 // 토큰 관리 헬퍼 함수들
 export const tokenManager = {
