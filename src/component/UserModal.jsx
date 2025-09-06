@@ -46,7 +46,7 @@ const statusMap = {
 // ------------------------------
 // UserModal 컴포넌트
 // ------------------------------
-const API = "http://13.209.99.158:8080";
+const API = import.meta.env.VITE_REACT_APP_ADMIN_URL;
 
 const UserModal = ({ onClose, user, fetchAppointments }) => {
   if (!user) return null;
