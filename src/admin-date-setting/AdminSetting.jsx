@@ -130,7 +130,7 @@ function AdminSetting() {
           />
           <div className="timetable-control">
             <TimeSlots
-              API={API}
+              API={BASE_URL}
               token={token}
               selectedDate={selectedDate}
             />
