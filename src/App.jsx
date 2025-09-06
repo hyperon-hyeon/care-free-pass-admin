@@ -7,32 +7,32 @@ import AdminDateSetting from './admin-date-setting/AdminSetting.jsx';
 import AdminRoomSetting from './admin-room-setting/AdminRoomSetting.jsx';
 import AdminDashboard from './admin-waiting/AdminDashBoard.jsx';
 
-import { signUp } from './api/auth.js'; 
+// import { signUp } from './api/auth.js'; 
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
   
-  const DUMMY_USER = {
-    adminName: '김관리',
-    adminEmail: 'test@example.com',
-    adminPassword: 'password123',
-    hospitalName: '구름대병원',
-    hospitalAddress: 'Seoul, Korea'
-  };
+  // const DUMMY_USER = {
+  //   adminName: '김관리',
+  //   adminEmail: 'test@example.com',
+  //   adminPassword: 'password123',
+  //   hospitalName: '구름대병원',
+  //   hospitalAddress: 'Seoul, Korea'
+  // };
 
   useEffect(() => {
     const handleInitialSetup = async () => {
       try {
-        console.log('백그라운드에서 회원가입을 시작합니다...');
+        // console.log('백그라운드에서 회원가입을 시작합니다...');
 
-        await signUp(
-          DUMMY_USER.adminName,
-          DUMMY_USER.adminEmail,
-          DUMMY_USER.adminPassword,
-          DUMMY_USER.hospitalName,
-          DUMMY_USER.hospitalAddress
-        );
-        console.log('회원가입 완료');
+        // await signUp(
+        //   DUMMY_USER.adminName,
+        //   DUMMY_USER.adminEmail,
+        //   DUMMY_USER.adminPassword,
+        //   DUMMY_USER.hospitalName,
+        //   DUMMY_USER.hospitalAddress
+        // );
+        // console.log('회원가입 완료');
 
       } catch (error) {
         console.error(

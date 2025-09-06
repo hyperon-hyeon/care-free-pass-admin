@@ -131,13 +131,14 @@
 }
 
 .logo-placeholder {
-  background-image: url('../assets/hospitalLogo.png');
-  width: 157.5px;
-  height: 45px;
+  background-image: url('../assets/care-free-pass-header-logo.png');
+  width: 400px;
+  height: 40px;
   flex: none;
   order: 0;
   flex-grow: 0;
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .right-section {
