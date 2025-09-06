@@ -1,4 +1,3 @@
-
 .dashboard{
   display: flex;
   flex-direction: column;
@@ -45,13 +44,6 @@
   flex-grow: 0;
 }
 
-/* .board-waiting-info p{
-  margin:0px;
-  margin-left: 10px;
-  font-size:16px;
-  color:#888
-} */
-
 .board-waiting-title{
   margin:0px;
   margin-left: 10px;
@@ -96,81 +88,65 @@
   align-items: center;
 }
 
-/* 버튼과 셀렉트 박스에 공통 스타일 적용 */
 .right-area button,
 .right-area .dropdown-content select {
-    box-sizing: border-box; /* 패딩과 보더가 너비에 포함되도록 설정 */
-    height: 50px;
-    padding: 0 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    color: black;
-    
-    /* 너비를 통일하여 깜빡이는 현상 방지 */
-    min-width: 300px; /* 드롭다운 메뉴 너비에 맞게 조정 */
-    text-align: left; /* 텍스트 정렬 */
+  box-sizing: border-box;
+  height: 50px;
+  padding: 0 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  min-width: 300px; 
+  text-align: left; 
 }
 
-/* 드롭다운 컨테이너는 위치 제어용으로만 사용 */
+
 .right-area .dropdown-content {
-    /* 너비와 높이를 버튼과 동일하게 설정 */
-    width: 100%;
-    height: 50px;
+  width: 100%;
+  height: 50px;
 }
 
-/* 폰트와 화살표 색상 등 기본 스타일 재설정 */
+
 .right-area .dropdown-content select {
-    -webkit-appearance: none; /* iOS Safari용 기본 스타일 제거 */
-    -moz-appearance: none; /* Firefox용 기본 스타일 제거 */
-    appearance: none; /* 기본 스타일 제거 */
-    background-repeat: no-repeat;
-    background-position: right 15px center; /* 화살표 위치 조정 */
-    background-size: 16px;
+-webkit-appearance: none; 
+-moz-appearance: none;
+appearance: none; 
+background-repeat: no-repeat;
+background-position: right 15px center;
+background-size: 16px;
 }
 
 
-/* ✅ 드롭다운에 적용할 칩 스타일 */
 .chip-style {
-    box-sizing: border-box;
-    
-    /* ✅ 너비와 높이 키우기 */
-    width: 200px; /* 원하는 너비로 설정 */
-    height: 50px; /* 원하는 높이로 설정 */
-    
-    padding: 12px 24px; /* 여백 키우기 */
-    
-    /* ✅ 중앙 정렬 */
-    margin: 0 auto;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    border-radius: 99px;
-    background-color: #FFFFFF;
-    color: #000000; 
-    cursor: pointer;
-    font-size: 20px;
-    transition: all 0.2s ease;
-    
-    /* ✅ <select>의 기본 스타일 제거 */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    
-    /* ✅ 커스텀 화살표 추가 */
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.61a.5.5 0 0 1 .382-.879h9.914a.5.5 0 0 1 .382.879l-4.796 5.53a.5.5 0 0 1-.765-.001z"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 15px center; /* 화살표 위치 조정 */
-    background-size: 16px;
+  box-sizing: border-box;
+  width: 200px;
+  height: 50px;
+  padding: 12px 24px; 
+  margin: 0 auto;    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 99px;
+  background-color: #FFFFFF;
+  color: #000000; 
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.2s ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.61a.5.5 0 0 1 .382-.879h9.914a.5.5 0 0 1 .382.879l-4.796 5.53a.5.5 0 0 1-.765-.001z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 15px center; 
+  background-size: 16px;
 }
 
-/* 마우스를 올렸을 때 (호버) */
 .chip-style:hover {
-    background-color: #F8F9FA;
-    border-color: #AAB0BB;
+  background-color: #F8F9FA;
+  border-color: #AAB0BB;
 }

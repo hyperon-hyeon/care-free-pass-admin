@@ -65,16 +65,15 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* 가로 중앙 배열 */
-  justify-content: flex-start !important; /* 세로 위쪽 배열 */
+  align-items: center; 
+  justify-content: flex-start !important;
   width: 1900px;
   max-width: 100%;
   gap: 24px;
-  padding: 0 180px; /* 상하 패딩을 제거하고 좌우만 유지 */
+  padding: 0 180px;
   height: auto;
 }
 
-/* 카드 스타일 */
 .admin-card {
   flex-direction: column;
   display: flex;
@@ -137,9 +136,7 @@
   box-shadow: 1px 1px 20px 1px rgba(196, 196, 196, 0.30);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-decoration: none; /* 밑줄 제거 */
-  color: inherit; /* 부모 요소의 글자색 상속 (기존 색상 유지) */
-  /* cursor: pointer; (Link는 기본적으로 pointer 커서이므로 필요 없지만, 다른 곳에 영향을 줄 경우 추가) */
-
+  color: inherit;
 }
 
 .card__text {

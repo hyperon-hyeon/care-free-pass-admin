@@ -24,7 +24,7 @@ const dummyAppointments = [
   { appointmentId: 105, memberName: '이준호', memberPhoneNumber: '010-9999-0000', memberBirthDate: '1985-07-09', memberGender: '남성', hospitalName: '구름대병원', department: '피부과', appointmentDate: '2025-09-06', appointmentTime: '10:00', status: 'CALLEDD', statusDescription: '예약 완료', canCall: true },
   { appointmentId: 106, memberName: '이수현', memberPhoneNumber: '010-1234-1234', memberBirthDate: '1985-08-06', memberGender: '여성', hospitalName: '구름대병원', department: '내과', appointmentDate: '2025-09-06', appointmentTime: '16:00', status: 'SCHEDULED', statusDescription: '예약 완료', canCall: true },
   { appointmentId: 107, memberName: '전지현', memberPhoneNumber: '010-5678-5678', memberBirthDate: '1985-09-09', memberGender: '남성', hospitalName: '구름대병원', department: '정형외과', appointmentDate: '2025-09-06', appointmentTime: '15:00', status: 'SCHEDULED', statusDescription: '예약 완료', canCall: true },
-  { appointmentId: 107, memberName: '박대기', memberPhoneNumber: '010-1234-5678', memberBirthDate: '1985-09-09', memberGender: '여성', hospitalName: '구름대병원', department: '정형외과', appointmentDate: '2025-09-06', appointmentTime: '15:30', status: 'SCHEDULED', statusDescription: '예약 완료', canCall: true },
+  { appointmentId: 108, memberName: '박대기', memberPhoneNumber: '010-1234-5678', memberBirthDate: '1985-09-09', memberGender: '여성', hospitalName: '구름대병원', department: '정형외과', appointmentDate: '2025-09-06', appointmentTime: '15:30', status: 'SCHEDULED', statusDescription: '예약 완료', canCall: true },
 ];
 
 const Sidebar = ({ onClose }) => (
