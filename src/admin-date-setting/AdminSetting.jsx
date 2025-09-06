@@ -8,6 +8,8 @@ import UserAdminList from './UserAdminList.jsx';
 import TimeSlots from './TimeSlots.jsx';
 import { useNavigate } from 'react-router-dom';
 
+const BASE_URL = import.meta.env.VITE_REACT_APP_ADMIN_URL;
+
 function AdminSetting() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
@@ -41,7 +43,7 @@ function AdminSetting() {
       const dd = String(date.getDate()).padStart(2, '0');
       const formattedDate = `${yyyy}-${mm}-${dd}`;
 
-      const response = await fetch(`${API}/api/v1/appointments/date?date=${formattedDate}`, {
+      const response = await fetch(`${BASE_URL}/appointments/date?date=${formattedDate}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

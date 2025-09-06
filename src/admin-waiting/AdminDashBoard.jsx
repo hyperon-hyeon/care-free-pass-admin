@@ -63,6 +63,7 @@ function AdminDashboard() {
   const fetchDepartments = useCallback(async () => {
     if (!validateToken()) {
       setDepartments(['내과', '정형외과', '이비인후과', '외과', '피부과']);
+      console.log('✅ 더미 진료과 로드 완료');
       return;
     }
     try {
@@ -71,6 +72,7 @@ function AdminDashboard() {
       });
       const deptNames = res.data.data?.map(d => d.name) || [];
       setDepartments(deptNames.length ? deptNames : ['내과', '정형외과', '이비인후과', '외과', '피부과']);
+      console.log('✅ 서버 진료과 로드 성공:', deptNames);
     } catch (e) {
       handleApiError(e, '진료과 불러오기');
       setDepartments(['내과', '정형외과', '이비인후과', '외과', '피부과']);
@@ -80,6 +82,7 @@ function AdminDashboard() {
   const fetchAppointments = useCallback(async () => {
     if (!validateToken()) {
       setAppointments(dummyAppointments);
+      console.log('✅ 더미 예약 데이터 로드 완료');
       return;
     }
     try {
@@ -98,6 +101,7 @@ function AdminDashboard() {
         name: a.memberName
       }));
       setAppointments([...formattedApi, ...formattedDummy]);
+      console.log(`✅ 서버 예약 ${apiData.length}건 + 더미 예약 ${dummyAppointments.length}건 불러오기 성공`);
     } catch (e) {
       handleApiError(e, '예약 불러오기');
       setAppointments(dummyAppointments);
@@ -111,6 +115,7 @@ function AdminDashboard() {
       await fetchDepartments();
       await fetchAppointments();
       setLoading(false);
+      console.log('✅ AdminDashboard 초기화 완료');
     };
     init();
   }, [fetchDepartments, fetchAppointments]);
@@ -126,6 +131,7 @@ function AdminDashboard() {
       await axios.put(`${BASE_URL}/appointments/${id}/status/CALLED`, {}, { headers: { Authorization: `Bearer ${token}` } });
       await fetchAppointments();
       alert('환자 호출 성공');
+      console.log(`✅ 환자 호출 성공: appointmentId=${id}`);
     } catch (e) {
       handleApiError(e, '환자 호출');
       alert('환자 호출 실패');

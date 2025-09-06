@@ -3,6 +3,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './TimeSlots.css';
 
+const BASE_URL = import.meta.env.VITE_REACT_APP_ADMIN_URL;
+
+
 const AMSlots = ['10:00', '10:30', '11:00', '11:30'];
 const PMSlots = [
   '12:00', '12:30', '13:00', '13:30',
@@ -43,7 +46,7 @@ function TimeSlots({ API, token, selectedDate }) {
     if (!validateToken()) return;
     try {
       const response = await axios.get(
-        `${API}/api/v1/admin/hospitals/${hospitalId}/departments`,
+        `${BASE_URL}/admin/hospitals/${hospitalId}/departments`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -70,7 +73,7 @@ function TimeSlots({ API, token, selectedDate }) {
 
   useEffect(() => { fetchDepartments(); }, [fetchDepartments]);
 
-  // 🔹 차단 / 예약된 슬롯 불러오기
+  // 차단 / 예약된 슬롯 불러오기
   const fetchSlots = useCallback(async () => {
     if (!selectedDepartmentId || !selectedDate) return;
 
@@ -78,14 +81,14 @@ function TimeSlots({ API, token, selectedDate }) {
 
     try {
       const blockedRes = await axios.get(
-        `${API}/api/v1/admin/time-slots/blocked/date?departmentId=${selectedDepartmentId}&date=${dateStr}`,
+        `${BASE_URL}/admin/time-slots/blocked/date?departmentId=${selectedDepartmentId}&date=${dateStr}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const blocked = blockedRes.data.data || [];
       console.log('[Fetch Slots] 차단 슬롯', blocked);
 
       const reservedRes = await axios.get(
-        `${API}/api/v1/appointments/date?date=${dateStr}`,
+        `${BASE_URL}/appointments/date?date=${dateStr}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       const reservedRaw = reservedRes.data.data || [];
@@ -118,7 +121,7 @@ function TimeSlots({ API, token, selectedDate }) {
 
   useEffect(() => { fetchSlots(); }, [selectedDepartmentId, selectedDate, fetchSlots]);
 
-  // 🔹 슬롯 토글 (임시 상태 변경)
+  // 슬롯 토글 (임시 상태 변경)
   const toggleSlot = (time) => {
     if (!selectedDepartmentId) return alert('먼저 진료과를 선택하세요.');
 
@@ -156,7 +159,7 @@ function TimeSlots({ API, token, selectedDate }) {
       const requests = changesToApply.map(slot => {
         if (slot.status === 'pending-deny') {
           return axios.post(
-            `${API}/api/v1/admin/time-slots/block`,
+            `${BASE_URL}/admin/time-slots/block`,
             {
               departmentId: selectedDepartmentId,
               blockDate: dateStr,
@@ -166,7 +169,7 @@ function TimeSlots({ API, token, selectedDate }) {
           );
         } else if (slot.status === 'pending-allow') {
           return axios.delete(
-            `${API}/api/v1/admin/time-slots/${slot.exceptionId}`,
+            `${BASE_URL}/admin/time-slots/${slot.exceptionId}`,
             { headers: { Authorization: `Bearer ${token}` } }
           );
         }
