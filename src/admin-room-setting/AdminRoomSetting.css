@@ -78,7 +78,7 @@
     top: 16px;
     right: 16px;
     border: none;
-    background: url('../assets/close.svg') no-repeat center / contain;
+    background: url('../assets/close.png') no-repeat center / contain;
     cursor: pointer;
 }
 
@@ -136,7 +136,7 @@
     align-items: center;
     padding: 0px;
     gap: 20px;
-    width: 248px;
+    width: 300px;
     height: 38px;
     flex: none;
     order: 0;
