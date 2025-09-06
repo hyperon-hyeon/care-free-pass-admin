@@ -46,13 +46,13 @@ const statusMap = {
 // ------------------------------
 // UserModal 컴포넌트
 // ------------------------------
-const API = "http://13.209.99.158:8080";
+const API = "https://13.209.99.158:8080";
 
 const UserModal = ({ onClose, user, fetchAppointments }) => {
   if (!user) return null;
 
   const age = calculateAge(user.memberBirthDate);
-  const genderShort = formatGender(user.gender);
+  const genderShort = formatGender(user.memberGender);
   const formattedTime = formatTime(user.appointmentTime);
   const formattedPhone = formatPhoneNumber(user.memberPhoneNumber);
   const statusClass = statusMap[user.status] || '';

@@ -17,11 +17,11 @@ function UserCard({ user, onCall, onCardClick }) {
     const timeParts = user.appointmentTime.split(':');
     return `${timeParts[0]}시 ${timeParts[1]}분`;
   })();
-  const formattedDate = user.appointmentDate; // "2024-12-31"
+  const formattedDate = user.appointmentDate;
   const age = calculateAge(user.memberBirthDate);
   const genderShort =
-    user.gender === '남자' ? '(남)' :
-    user.gender === '여자' ? '(여)' :
+    user.memberGender === '남자' ? '(남)' :
+    user.memberGender === '여자' ? '(여)' :
     '';
 
   return (
