@@ -10,6 +10,10 @@ import { useNavigate } from 'react-router-dom';
 
 const BASE_URL = import.meta.env.VITE_ADMIN_URL;
 
+  // 오늘 기준 하루 뒤
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
 function AdminSetting() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
@@ -17,9 +21,9 @@ function AdminSetting() {
   const [adminInfo, setAdminInfo] = useState({ adminName: '', hospitalName: '' });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(tomorrow);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const today = new Date();
+
 
   const statusMap = {
     SCHEDULED: '내원전',
@@ -33,7 +37,6 @@ function AdminSetting() {
 
   const token = localStorage.getItem("token");
 
-  // 날짜별 예약 조회
   const fetchAppointmentsByDate = async (date) => {
     setLoading(true);
     try {
@@ -49,7 +52,6 @@ function AdminSetting() {
       if (!response.ok) throw new Error('예약 정보를 불러오지 못했습니다.');
       const data = await response.json();
 
-      // data.data 배열을 바로 map 처리
       const formattedList = (data.data || []).map(item => ({
         ...item,
         name: item.memberName,
@@ -83,7 +85,6 @@ function AdminSetting() {
   const handleToggleSidebar = () => setIsSidebarOpen(prev => !prev);
   const handleGoBack = () => navigate('/admin/settings');
 
-  // 상태 필터링
   const pendingUsers = users.filter(user => user.status === '내원전');
 
   if (loading) return <div style={{ textAlign: 'center', padding: '100px' }}>로딩 중...</div>;
@@ -117,7 +118,7 @@ function AdminSetting() {
               dateFormat="yyyy.MM.dd"
               className="waiting-date"
               placeholderText="날짜 선택"
-              minDate={today}
+              minDate={tomorrow} // 오늘 하루 뒤부터 선택 가능
             />
           </div>
         </div>
