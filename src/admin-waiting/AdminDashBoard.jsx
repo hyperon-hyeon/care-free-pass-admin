@@ -56,6 +56,14 @@ function AdminDashboard() {
     return true;
   };
 
+    const logPatientInfo = (patients, source) => {
+    console.group(`📋 ${source} 환자 정보 (총 ${patients.length}명)`);
+    patients.forEach((patient, index) => {
+      console.log(`${index + 1}. 이름: ${patient.memberName || patient.name} | 진료과: ${patient.department} | 시간: ${patient.appointmentTime} | 상태: ${patient.status || patient.statusDescription} | 전화: ${patient.memberPhoneNumber}`);
+    });
+    console.groupEnd();
+  };
+
   const handleApiError = (error, operation) => {
     console.error(`${operation} 실패:`, error);
   };

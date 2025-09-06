@@ -21,24 +21,24 @@ function App() {
 
   useEffect(() => {
     const handleInitialSetup = async () => {
-      try {
-         console.log('백그라운드에서 회원가입을 시작합니다...');
+      // try {
+      //    console.log('백그라운드에서 회원가입을 시작합니다...');
 
-         await signUp(
-           DUMMY_USER.adminName,
-           DUMMY_USER.adminEmail,
-           DUMMY_USER.adminPassword,
-           DUMMY_USER.hospitalName,
-           DUMMY_USER.hospitalAddress
-         );
-         console.log('회원가입 완료');
+      //    await signUp(
+      //      DUMMY_USER.adminName,
+      //      DUMMY_USER.adminEmail,
+      //      DUMMY_USER.adminPassword,
+      //      DUMMY_USER.hospitalName,
+      //      DUMMY_USER.hospitalAddress
+      //    );
+      //    console.log('회원가입 완료');
 
-      } catch (error) {
-        console.error(
-          '회원가입 실패:',
-          error.response ? error.response.data : error.message
-        );
-      }
+      // } catch (error) {
+      //   console.error(
+      //     '회원가입 실패:',
+      //     error.response ? error.response.data : error.message
+      //   );
+      // }
     };
     handleInitialSetup();
 
