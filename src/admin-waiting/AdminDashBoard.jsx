@@ -23,7 +23,7 @@ const Sidebar = ({ onClose }) => (
 );
 
 function AdminDashboard() {
-  const API = 'http://13.209.99.158:8080';
+  const API = 'https://13.209.99.158:8080';
   const token = localStorage.getItem("token");
 
   const [appointments, setAppointments] = useState([]);

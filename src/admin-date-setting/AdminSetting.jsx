@@ -28,7 +28,7 @@ function AdminSetting() {
     CANCELLED: '취소됨',
   };
 
-  const API = 'http://13.209.99.158:8080';
+  const API = 'https://13.209.99.158:8080';
   const token = localStorage.getItem("token");
 
   // 날짜별 예약 조회
