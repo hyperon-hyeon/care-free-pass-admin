@@ -197,6 +197,10 @@
   flex-grow: 0;
 }
 
+.admin-name p{
+  color:#000;
+}
+
 .admin-toggle{
   width: 22.5px;
   font-size: 13.5px;

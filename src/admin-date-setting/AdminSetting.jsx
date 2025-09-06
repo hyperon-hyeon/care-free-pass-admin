@@ -38,7 +38,7 @@ function AdminSetting() {
       const yyyy = date.getFullYear();
       const mm = String(date.getMonth() + 1).padStart(2, '0');
       const dd = String(date.getDate()).padStart(2, '0');
-      const formattedDate = `${yyyy}-${mm}-${dd}`; // YYYY-MM-DD
+      const formattedDate = `${yyyy}-${mm}-${dd}`;
 
       const response = await fetch(`${API}/api/v1/appointments/date?date=${formattedDate}`, {
         headers: { Authorization: `Bearer ${token}` }
@@ -84,7 +84,7 @@ function AdminSetting() {
   // 상태 필터링
   const pendingUsers = users.filter(user => user.status === '내원전');
 
-  if (loading) return <div style={{ textAlign: 'center', padding: '500px' }}>로딩 중...</div>;
+  if (loading) return <div style={{ textAlign: 'center', padding: '100px' }}>로딩 중...</div>;
 
   return (
     <div style={{ padding:'24px' }}>
