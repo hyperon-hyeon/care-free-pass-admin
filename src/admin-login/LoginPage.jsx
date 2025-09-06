@@ -15,7 +15,7 @@ function LoginPage({ onLoginSuccess }) {
       const { accessToken } = response;
       
       if (accessToken) {
-        localStorage.setItem('jwt_token', accessToken);
+        localStorage.setItem('token', accessToken);
         console.log('로그인 성공! 엑세스 토큰:', accessToken);
         
         onLoginSuccess(); 

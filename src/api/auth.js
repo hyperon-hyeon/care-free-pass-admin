@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const ADMIN_URL = import.meta.env.VITE_REACT_APP_ADMIN_URL; // Vite 환경에서 올바른 접근
-
+const ADMIN_URL = import.meta.env.VITE_ADMIN_URL; // Vite 환경에서 올바른 접근
 const BASE_URL = `${ADMIN_URL}/auth/hospital`;
 
 // 토큰 관리 헬퍼 함수들
@@ -32,37 +31,31 @@ export const tokenManager = {
     if (!token) return true;
     
     try {
-      // JWT payload 디코딩
       const payload = JSON.parse(atob(token.split('.')[1]));
       const currentTime = Date.now() / 1000;
-      
-      // exp 필드가 있으면 확인, 없으면 저장 시간 기준으로 추정 (보통 1시간)
       if (payload.exp) {
         return payload.exp < currentTime;
       } else {
-        // exp 필드가 없으면 저장 시간 기준으로 1시간 후 만료로 추정
         const tokenSetTime = localStorage.getItem('tokenSetTime');
         if (tokenSetTime) {
-          const oneHour = 60 * 60 * 1000; // 1시간을 밀리초로
+          const oneHour = 60 * 60 * 1000; 
           return Date.now() - parseInt(tokenSetTime) > oneHour;
         }
         return true;
       }
     } catch (error) {
       console.error('토큰 디코딩 실패:', error);
-      return true; // 디코딩 실패 시 만료된 것으로 처리
+      return true;
     }
   },
 
   // 토큰이 곧 만료될 예정인지 확인 (5분 전)
   isTokenExpiringSoon: (token) => {
     if (!token) return true;
-    
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
       const currentTime = Date.now() / 1000;
-      const fiveMinutes = 5 * 60; // 5분
-      
+      const fiveMinutes = 5 * 60;
       if (payload.exp) {
         return payload.exp - currentTime < fiveMinutes;
       }
@@ -73,7 +66,7 @@ export const tokenManager = {
   }
 };
 
-// 토큰 갱신 API (서버에 refresh token 엔드포인트가 있다고 가정)
+// 토큰 갱신 API
 export const refreshAccessToken = async () => {
   try {
     const refreshToken = tokenManager.getRefreshToken();
@@ -82,7 +75,7 @@ export const refreshAccessToken = async () => {
     }
 
     const response = await axios.post(
-      `${BASE_URL}/refresh`, // refresh 엔드포인트 (서버에 맞게 수정)
+      `${BASE_URL}/refresh`,
       { refreshToken },
       {
         headers: {
@@ -101,26 +94,19 @@ export const refreshAccessToken = async () => {
   } catch (error) {
     console.error('토큰 갱신 실패:', error);
     tokenManager.clearTokens();
-    
-    // 토큰 갱신 실패 시 로그인 페이지로 리다이렉트
     if (typeof window !== 'undefined') {
       window.location.href = '/login';
     }
-    
     throw error;
   }
 };
 
-// 자동 토큰 갱신이 포함된 API 요청 함수
+// 자동 토큰 갱신 포함 API 요청
 export const makeAuthenticatedRequest = async (requestConfig) => {
   let token = tokenManager.getToken();
-  
-  // 토큰이 없으면 에러
   if (!token) {
     throw new Error('No token available');
   }
-  
-  // 토큰이 만료되었거나 곧 만료될 예정이면 갱신 시도
   if (tokenManager.isTokenExpired(token) || tokenManager.isTokenExpiringSoon(token)) {
     try {
       token = await refreshAccessToken();
@@ -128,8 +114,6 @@ export const makeAuthenticatedRequest = async (requestConfig) => {
       throw new Error('Token refresh failed');
     }
   }
-  
-  // 요청에 토큰 헤더 추가
   const config = {
     ...requestConfig,
     headers: {
@@ -138,17 +122,13 @@ export const makeAuthenticatedRequest = async (requestConfig) => {
       'Content-Type': 'application/json'
     }
   };
-  
   try {
     const response = await axios(config);
     return response;
   } catch (error) {
-    // 401 에러 (인증 실패) 시 토큰 갱신 재시도
     if (error.response?.status === 401) {
       try {
         token = await refreshAccessToken();
-        
-        // 갱신된 토큰으로 재요청
         config.headers['Authorization'] = `Bearer ${token}`;
         const retryResponse = await axios(config);
         return retryResponse;
@@ -157,12 +137,11 @@ export const makeAuthenticatedRequest = async (requestConfig) => {
         throw refreshError;
       }
     }
-    
     throw error;
   }
 };
 
-// 회원가입 API
+//회원가입 API (주석 처리됨)
 export const signUp = async (adminName, adminEmail, adminPassword, hospitalName, hospitalAddress) => {
   try {
     const response = await axios.post(
@@ -180,14 +159,10 @@ export const signUp = async (adminName, adminEmail, adminPassword, hospitalName,
         }
       }
     );
-
     const data = response.data?.data || response.data;
-    
-    // 회원가입 성공 시 토큰 저장
     if (data.accessToken) {
       tokenManager.setTokens(data.accessToken, data.refreshToken);
     }
-    
     return data;
   } catch (error) {
     console.error('회원가입 오류:', error.response ? error.response.data : error.message);
@@ -196,27 +171,40 @@ export const signUp = async (adminName, adminEmail, adminPassword, hospitalName,
 };
 
 // 로그인 API
-export const signIn = async (adminEmail, adminPassword) => {
+export const signIn = async (email, password) => {
+  const requestData = {
+    adminEmail: email,
+    adminPassword: password
+  };
+
+  console.log('=== 로그인 요청 디버깅 ===');
+  console.log('ADMIN_URL:', ADMIN_URL);
+  console.log('BASE_URL:', BASE_URL);
+  console.log('전송 데이터:', requestData);
+  console.log('요청 URL:', `${BASE_URL}/sign-in`);
+
   try {
     const response = await axios.post(
       `${BASE_URL}/sign-in`,
-      { adminEmail, adminPassword },
+      requestData,
       {
         headers: {
           'Content-Type': 'application/json'
         }
       }
     );
-
+    console.log('로그인 응답:', response.data);
     const data = response.data?.data || response.data;
-    
-    // 로그인 성공 시 토큰 저장
     if (data.accessToken) {
       tokenManager.setTokens(data.accessToken, data.refreshToken);
     }
-    
     return data;
   } catch (error) {
+    console.log('=== 에러 상세 정보 ===');
+    console.log('상태코드:', error.response?.status);
+    console.log('에러 메시지:', error.response?.data);
+    console.log('응답 헤더:', error.response?.headers);
+    console.log('========================');
     console.error('로그인 오류:', error.response ? error.response.data : error.message);
     throw error;
   }
@@ -226,9 +214,7 @@ export const signIn = async (adminEmail, adminPassword) => {
 export const signOut = async () => {
   try {
     const token = tokenManager.getToken();
-    
     if (token) {
-      // 서버에 로그아웃 요청 (선택사항)
       await makeAuthenticatedRequest({
         method: 'POST',
         url: `${BASE_URL}/sign-out`
@@ -237,7 +223,6 @@ export const signOut = async () => {
   } catch (error) {
     console.error('로그아웃 오류:', error);
   } finally {
-    // 로컬 토큰 삭제
     tokenManager.clearTokens();
   }
 };
@@ -245,18 +230,14 @@ export const signOut = async () => {
 // 토큰 상태 확인 함수
 export const checkTokenStatus = () => {
   const token = tokenManager.getToken();
-  
   if (!token) {
     return { valid: false, expired: true, message: 'No token found' };
   }
-  
   if (tokenManager.isTokenExpired(token)) {
     return { valid: false, expired: true, message: 'Token expired' };
   }
-  
   if (tokenManager.isTokenExpiringSoon(token)) {
     return { valid: true, expired: false, expiringSoon: true, message: 'Token expiring soon' };
   }
-  
   return { valid: true, expired: false, expiringSoon: false, message: 'Token valid' };
 };

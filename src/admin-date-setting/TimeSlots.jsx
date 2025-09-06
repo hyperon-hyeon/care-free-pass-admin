@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './TimeSlots.css';
 
-const BASE_URL = import.meta.env.VITE_REACT_APP_ADMIN_URL;
+const BASE_URL = import.meta.env.VITE_ADMIN_URL;
 
 
 const AMSlots = ['10:00', '10:30', '11:00', '11:30'];

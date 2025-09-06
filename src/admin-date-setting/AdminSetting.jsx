@@ -8,7 +8,7 @@ import UserAdminList from './UserAdminList.jsx';
 import TimeSlots from './TimeSlots.jsx';
 import { useNavigate } from 'react-router-dom';
 
-const BASE_URL = import.meta.env.VITE_REACT_APP_ADMIN_URL;
+const BASE_URL = import.meta.env.VITE_ADMIN_URL;
 
 function AdminSetting() {
   const navigate = useNavigate();

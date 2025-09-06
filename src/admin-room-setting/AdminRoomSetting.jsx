@@ -17,7 +17,7 @@ function AdminRoomSetting() {
   const [editDeptDesc, setEditDeptDesc] = useState('');
 
   const hospitalId = 1;
-  const BASE_URL = import.meta.env.VITE_REACT_APP_ADMIN_URL;
+  const BASE_URL = import.meta.env.VITE_ADMIN_URL;
   const API_BASE = `${BASE_URL}/admin/hospitals`;
 
   useEffect(() => {

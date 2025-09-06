@@ -46,7 +46,7 @@ const statusMap = {
 // ------------------------------
 // UserModal 컴포넌트
 // ------------------------------
-const API = import.meta.env.VITE_REACT_APP_ADMIN_URL;
+const API = import.meta.env.VITE_ADMIN_URL;
 
 const UserModal = ({ onClose, user, fetchAppointments }) => {
   if (!user) return null;
@@ -68,7 +68,7 @@ const UserModal = ({ onClose, user, fetchAppointments }) => {
     }
 
     try {
-      await axios.delete(`${API}/api/v1/appointments/${user.appointmentId}`, {
+      await axios.delete(`${API}/appointments/${user.appointmentId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
           Accept: "*/*",

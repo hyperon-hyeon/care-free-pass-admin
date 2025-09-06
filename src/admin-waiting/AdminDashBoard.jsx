@@ -36,7 +36,7 @@ const Sidebar = ({ onClose }) => (
 
 function AdminDashboard() {
   // Vite 환경 변수 사용
-  const BASE_URL = import.meta.env.VITE_REACT_APP_ADMIN_URL;
+  const BASE_URL = import.meta.env.VITE_ADMIN_URL;
   const token = localStorage.getItem('token');
 
   const [appointments, setAppointments] = useState([]);
@@ -121,7 +121,7 @@ function AdminDashboard() {
   }, [fetchDepartments, fetchAppointments]);
 
   useEffect(() => {
-    const interval = setInterval(() => fetchAppointments(), 300000);
+    const interval = setInterval(() => fetchAppointments(), 6000);
     return () => clearInterval(interval);
   }, [fetchAppointments]);
 
