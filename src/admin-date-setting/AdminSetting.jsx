@@ -20,7 +20,7 @@ function AdminSetting() {
   const today = new Date();
 
   const statusMap = {
-    SCHEDULLED: '내원전',
+    SCHEDULED: '내원전',
     WAITING: '내원전',
     BOOKED: '예약됨',
     ARRIVED: '대기중',
@@ -29,7 +29,7 @@ function AdminSetting() {
     CANCELLED: '취소됨',
   };
 
-  const API = 'http://13.209.99.158:8080';
+  const API = 'http://218.51.41.52:9600';
   const token = localStorage.getItem("token");
 
   // 날짜별 예약 조회
