@@ -20,8 +20,8 @@ function UserCard({ user, onCall, onCardClick }) {
   const formattedDate = user.appointmentDate;
   const age = calculateAge(user.memberBirthDate);
   const genderShort =
-    user.memberGender === '남자' ? '(남)' :
-    user.memberGender === '여자' ? '(여)' :
+    user.memberGender === '남성' ? '(남)' :
+    user.memberGender === '여성' ? '(여)' :
     '';
 
   return (

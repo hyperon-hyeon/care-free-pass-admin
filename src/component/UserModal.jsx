@@ -24,8 +24,8 @@ function formatTime(timeStr) {
 }
 
 function formatGender(gender) {
-  if (gender === '남자') return '(남)';
-  if (gender === '여자') return '(여)';
+  if (gender === '남성') return '(남)';
+  if (gender === '여성') return '(여)';
   return '';
 }
 

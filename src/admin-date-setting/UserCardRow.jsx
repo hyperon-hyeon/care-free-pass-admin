@@ -19,8 +19,8 @@ function UserRowCard({ user,onCardClick }) {
   const formattedDate = user.appointmentDate; // "2024-12-31"
   const age = calculateAge(user.memberBirthDate);
   const genderShort =
-    user.gender === '남자' ? '(남)' :
-    user.gender === '여자' ? '(여)' :
+    user.gender === '남성' ? '(남)' :
+    user.gender === '여성' ? '(여)' :
     '';
 
   return (
