@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://13.209.99.158:8080/api/v1/auth/hospital';
+const BASE_URL = 'http://13.209.99.158:8080/api/v1/auth/hospital';
 
 // 토큰 관리 헬퍼 함수들
 export const tokenManager = {

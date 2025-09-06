@@ -46,7 +46,7 @@ const statusMap = {
 // ------------------------------
 // UserModal 컴포넌트
 // ------------------------------
-const API = "https://13.209.99.158:8080";
+const API = "http://13.209.99.158:8080";
 
 const UserModal = ({ onClose, user, fetchAppointments }) => {
   if (!user) return null;
